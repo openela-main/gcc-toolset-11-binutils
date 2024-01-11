@@ -5,7 +5,7 @@
 Summary: A GNU collection of binary utilities
 Name: %{?scl_prefix}%{?cross}binutils%{?_with_debug:-debug}
 Version: 2.36.1
-Release: 2%{?dist}
+Release: 4%{?dist}
 License: GPLv3+
 URL: https://sourceware.org/binutils
 
@@ -252,6 +252,14 @@ Patch28: binutils-ppc-weak-undefined-plt-relocs.patch
 # Lifetime: Fixed in 2.38 (maybe)
 Patch29: binutils.unicode.patch
 
+# Purpose: Fix the assembly of the three-operand variant of the DCBT insn.
+# Lifetime: Fixed in 2.37
+Patch30: binutils-PPC-dcbt.patch
+
+# Purpose: Fix addr2line from gcc-toolset-11-binutils having errors while compiling  
+#          code using LTO and Dwarf5
+# Lifetime: Fixed in 2.37
+Patch31: binutils-fix-addr2line-while-compiling-code-using-LTO-and-Dwarf5.patch
 #----------------------------------------------------------------------------
 
 Provides: bundled(libiberty)
@@ -914,6 +922,13 @@ exit 0
 
 #----------------------------------------------------------------------------
 %changelog
+* Fri Apr 28 2023 Yara Ahmad <yahmad@redhat.com> - 2.36.1-4
+- Fix addr2line from gcc-toolset-11-binutils having errors while compiling code 
+  using LTO and Dwarf5  (#2153811)
+
+* Tue Jan 25 2022 Nick Clifton  <nickc@redhat.com> - 2.36.1-3
+- Fix the assembly of the three-operand variant of the DCBT insn.  (#2044948)
+
 * Fri Nov 26 2021 Nick Clifton  <nickc@redhat.com> - 2.36.1-2
 - Add ability to control the display of unicode characters.  (#2009183)
 
